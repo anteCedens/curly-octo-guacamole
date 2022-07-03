@@ -15,6 +15,11 @@ def hello():
     return render_template("index.html")
 
 
+@app.route('/about')
+def about():
+    return render_template("about.html")
+
+
 # If that is the name, then run the app with the following arguments
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP', '0.0.0.0'),  # Get IP if it exists, if not use default (0.0.0.0)
