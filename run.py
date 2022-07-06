@@ -24,6 +24,18 @@ def about():
     return render_template("about.html", page_title="About", company=data)
 
 
+# Whenever we get an 'about' url with something after it, that will be passed into this view
+@app.route('/about/<member_name>')
+def about_member(member_name):
+    member = {}
+    with open("data/company.json", "r") as json_data:
+        data = json.load(json_data)
+        for obj in data:
+            if obj["url"] == member_name:
+                member = obj
+    return render_template("member.html", member=member)
+
+
 @app.route('/contact')
 def contact():
     return render_template("contact.html", page_title="Contact")
@@ -36,6 +48,7 @@ def careers():
 
 # If that is the name, then run the app with the following arguments
 if __name__ == '__main__':
-    app.run(host=os.environ.get('IP', '0.0.0.0'),  # Get IP if it exists, if not use default (0.0.0.0)
+    # Get IP if it exists, if not use default (0.0.0.0)
+    app.run(host=os.environ.get('IP', '0.0.0.0'),
             port=int(os.environ.get('PORT', '5000')),
             debug=True)
