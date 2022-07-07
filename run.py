@@ -7,8 +7,7 @@ if os.path.exists('env.py'):
 
 # Create an instance of Flask, and store it in a variable called "app"
 app = Flask(__name__)
-
-# This url ("/") should trigger the function that follows ("hello")
+app.secret_key = os.environ.get("SECRET_KEY")
 
 
 @app.route('/')
