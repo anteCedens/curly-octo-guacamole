@@ -36,7 +36,8 @@ def about_member(member_name):
     return render_template("member.html", member=member)
 
 
-@app.route('/contact')
+# Any method allowed beyond POST needs to be explicitly stated
+@app.route('/contact', methods=["GET", "POST"])
 def contact():
     return render_template("contact.html", page_title="Contact")
 
